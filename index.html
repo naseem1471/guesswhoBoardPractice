@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swiper Effect Card</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css",
+      href='https://fonts.googleapis.com/css?family=Montserrat:400,700' 
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-image">
+          <div class="image-container">
+            <img src="images/guessWhom.jpg" alt="guessWhom">
+          </div>
+          <form id="my-form">
+            <label for="chosen">Choose a number between 1 and 7:</label>
+            <input type="number" id="chosen" name="chosen" min="1" max="7" required>
+            <button type="submit">Enter</button>
+          </form>
+      </div>
+      <p id="result"></p>
+      <div class="swiper Slider-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/img_1.jpg" alt="Slide Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="images/img_2.jpg" alt="Slide Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="images/img_3.jpg" alt="Slide Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="images/img_4.jpg" alt="Slide Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="images/img_5.jpg" alt="Slide Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="images/img_6.jpg" alt="Slide Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="images/img_7.jpg" alt="Slide Image" />
+          </div>
+        </div>
+      </div>
+            <div class="footer">
+            <div class="grid-container">
+                <p>happy days are here agains don't you see</p>
+                <p>hello we need these to be flex column</p>
+                <p>Let see how much space we have........</p>
+                <p>This is why tailwind is so much better</p>
+                <P>Happy days..still have to learn css. the rudimentry</P>
+                <p>ffjgg lorem viscum pacebo.......................</p>
+
+
+
+            </div>
+
+
+            <div class="buttons">
+              <button class="btn first" id="reject">REJECT</button>
+              <button class="btn third" id="accept">ACCEPT</button>
+            </div>
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

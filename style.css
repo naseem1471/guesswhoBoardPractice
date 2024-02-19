@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --container: 112rem;
+  --m-auto: 0 auto;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins',"Montserrat", sans-serif;
+  font-size: 1.6rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+.container {
+  max-width: var(--container);
+  padding: 0 2rem;
+  margin: var(--m-auto);
+}
+
+.swiper {
+  position: relative;
+  width: 240px;
+  height: 320px;
+}
+
+.swiper-slide {
+  border-radius: 18px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.heading {
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.btn {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 5px;
+  margin-left: 2px;
+  padding: 1.2em 1.6em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+}
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.first {
+  transition: box-shadow 150ms ease-in-out, color 150ms ease-in-out;
+}
+.first:hover {
+  box-shadow:   0 0 30px 30px #e74c3c inset;
+}
+
+.third {
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  transition: all 150ms ease-in-out;
+}
+.third:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+}
+
+
+
+
+/* This is the result element */
+#result {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin-top: 2rem; /* add some padding between the div and the p tag */
+  margin-bottom: 2rem;
+}
+
+/* This is the container for the form and the image */
+.form-image {
+  width: 245px; /* set a fixed width for the container */
+  display: flex;
+  flex-direction: column; /* make the children stack vertically */
+  align-items: center;
+  justify-content: center;
+}
+
+/* This is the form element */
+#my-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* This is the label for the input */
+#my-form label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  display:flex;
+  flex-direction: row;
+}
+
+/* This is the input element */
+#my-form input {
+  width: 20%; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+/* This is the button element */
+#my-form button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/* This is the result element */
+#result {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin-top: 2rem; /* add some padding between the div and the p tag */
+}
+
+/* This is the image container */
+.image-container {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: center;
+  width: 200px; /* set the width of the circle */
+  height: 200px; /* set the height of the circle */
+  border-radius: 50%; /* make the div a circle */
+  border: 4px solid #3498db; /* add a border with the specified color */
+  overflow: hidden; /* hide the overflow of the image */
+  transform: scale(0.6); /* reduce the size of the circle by half */
+  margin-top: 15px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  max-width: 160px;
+  max-height: min-content;
+
+
+}
+
