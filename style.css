@@ -23,8 +23,10 @@ body {
   flex-direction: column;
   height: 100vh;
   align-items:center;
-  justify-content: flex-start;
+  /*justify-content: flex-start;*/
   margin-left: 5px;
+  background: #0ffb46;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .startContainer {
@@ -126,15 +128,67 @@ form {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(47px, 1fr));
     gap: 2px;
-    width: 310px;
-    height: 200px;
+    min-width: 310px;
+    min-height: 200px;
     background-color: grey; /* Set background color of grid to grey */
+    border-radius: 12px;
   }
   
   .square {
     background-color: #FFD700; /* Shiny yellowish background color */
     border-radius: 9px;
   }
+
+  #messages {
+    /* Position chat window below swiper container */
+    width: 100%;
+    min-height: 300px;
+    background: #ed9595;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px;
+    box-sizing: border-box;
+    clear: both; /* Ensure it clears floated elements */
+}
+
+#sendMsg {   
+    width: 100%;
+    min-height: 50px;
+    background: #ec3f3f;
+    clear: both; /* Ensure it clears floated elements */
+}
+
+#msgTxt {
+    width: calc(100% - 100px);
+    height: 100%;
+    padding-left: 5px;
+    box-sizing: border-box;
+    float: left; /* Float left to make it side by side with the button */
+}
+
+#msgBtn {
+    width: 100px;
+    height: 100%;
+    float: left; /* Float left to make it side by side with the input */
+}
+.outer{   
+    width:100%;
+    margin-top:10px;
+    display:flex;
+}
+#inner{
+    padding:10px;
+    box-sizing: border-box;
+    border-radius:10px;
+}
+.me{
+    background:#8800FF;
+    color:#fff;
+}
+.notMe{
+    background:#FFF;
+    color:#000;
+}
+
   
   
 

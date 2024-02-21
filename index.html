@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <div id="messages"></div>
+
     <div class="startContainer">
         <div class="containerImage">
             <img src="images/guessWhom.jpg" alt="guessWhom">
@@ -24,6 +26,12 @@
         </form>
     </div>
     <p id="result"></p>
+
+    
+    <div id="sendMsg">
+        <input type="text" id="msgTxt" placeholder="ENTER YOUR MSG...">
+        <input type="submit" id="msgBtn" value="send" onclick="module.sendMsg()">
+    </div>
 
     <div class="container">
         <div class="swiper Slider-container">
@@ -136,6 +144,84 @@
   <div class="square" data-id="23" id="square-23"></div>
   <div class="square" data-id="24" id="square-24"></div>
 </div>
+<p>THE OTHER PLAYERS GAME BOARD</p>
+
+
+
+    <script>
+      module = {};
+  </script>
+  <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+      import { getDatabase, ref, set, remove, onChildAdded, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+      const firebaseConfig = {
+      apiKey: "AIzaSyBFucjhQZsAngmtUxldhCMS01IdF1EBM5M",
+      authDomain: "newform-718a7.firebaseapp.com",
+      databaseURL: "https://newform-718a7-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "newform-718a7",
+      storageBucket: "newform-718a7.appspot.com",
+      messagingSenderId: "9032405366",
+      appId: "1:9032405366:web:6dce6e07ae2f4d1a03aa57"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+
+      
+      // variables
+      var msgTxt = document.getElementById('msgTxt');
+      var sender;
+      if(sessionStorage.getItem('sender')){
+          sender = sessionStorage.getItem('sender');
+      } else {
+          sender = prompt('PLEASE ENTER YOUR NAME');
+          sessionStorage.setItem('sender',sender);
+      }
+
+      console.log(sender)
+
+      // Function to clear session storage
+      function clearSessionStorage() {
+      sessionStorage.clear();
+      console.log('Session storage cleared.');
+      }
+
+      // Set an interval to clear session storage every 5 minutes (20 * 60 * 1000 milliseconds)
+      const interval = 5 * 60 * 1000;
+      setInterval(clearSessionStorage, interval);
+
+
+      
+
+
+      // TO SEND MESSAGES
+          module.sendMsg = function sendMsg(){
+          var msg = msgTxt.value;
+          var timestamp = new Date().getTime();
+          var readableTime = new Date(timestamp).toLocaleString();
+          set(ref(db,"MESSAGES/"+timestamp),{
+              msg : msg,
+              sender : sender,
+              readableTime: readableTime
+
+          })
+
+          msgTxt.value="";
+      }
+
+       // TO RECEIVE MSG
+    onChildAdded(ref(db,"MESSAGES"), (data)=>{
+        if(data.val().sender == sender){
+            messages.innerHTML += "<div style=justify-content:end class=outer id="+data.key+"><div id=inner class=me>you : "+data.val().msg+"<br> "+data.val().readableTime+"</div></div>";
+        } else {
+            messages.innerHTML += "<div class=outer id="+data.key+"><div id=inner class=notMe>"+data.val().sender+" : "+data.val().msg+"<br>"+data.val().readableTime+"</div></div>";
+        }
+    })
+  </script>
+
+
 
 
         
