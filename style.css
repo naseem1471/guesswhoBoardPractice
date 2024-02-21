@@ -126,10 +126,10 @@ form {
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(47px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
     gap: 2px;
-    min-width: 310px;
-    min-height: 200px;
+    min-width: 320px;
+    min-height: 240px;
     background-color: grey; /* Set background color of grid to grey */
     border-radius: 12px;
   }
@@ -187,6 +187,20 @@ form {
 .notMe{
     background:#FFF;
     color:#000;
+}
+
+img::after {
+  content: attr(alt);
+  position: absolute;
+  background: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  display: none;
+}
+
+img:hover::after {
+  display: block;
 }
 
   

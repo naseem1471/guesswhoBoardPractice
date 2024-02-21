@@ -63,7 +63,7 @@ form.addEventListener("submit", function(event) {
   
     // Update the src attribute of the image inside .image-container
     let imageContainer = document.querySelector(".containerImage img");
-    imageContainer.src = `images/img_${chosenSlider}.jpg`;
+    imageContainer.src = `images/img_${chosenSlider}.png`;
 
     // Hide the form and result paragraph
   form.style.display = "none";
