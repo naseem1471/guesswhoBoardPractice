@@ -20,8 +20,8 @@
             <img src="images/guessWhom.jpg" alt="guessWhom">
         </div>
         <form id="my-form">
-            <label for="chosen">Choose a number between 1 and 37:</label>
-            <input type="number" id="chosen" name="chosen" min="1" max="37" required>
+            <label for="chosen">Choose a number between 1 and 40:</label>
+            <input type="number" id="chosen" name="chosen" min="1" max="40" required>
             <button type="submit">Enter</button>   
         </form>
     </div>
@@ -30,7 +30,7 @@
     
     <div id="sendMsg">
         <input type="text" id="msgTxt" placeholder="ENTER YOUR MSG...">
-        <input type="submit" id="msgBtn" value="send" onclick="module.sendMsg()">
+        <input type="submit" id="msgBtn" value="send" onclick="sendMsg()">
     </div>
 
     <div class="container">
@@ -96,7 +96,7 @@
               <div class="swiper-slide" data-id="20">
                 <img src="images/img_20.png" alt="Slide Image" />
               </div>
-              <div class="swiper-slide" data-id="20">
+              <div class="swiper-slide" data-id="21">
                 <img src="images/img_21.png" alt="Slide Image" />
               </div>
               <div class="swiper-slide" data-id="22">
@@ -147,6 +147,15 @@
               <div class="swiper-slide" data-id="37"png>               
                 <img src="images/img_37.png" alt="Slide Image" />
               </div>
+              <div class="swiper-slide" data-id="35">
+                <img src="images/img_38.png" alt="Slide Image" />
+              </div>
+              <div class="swiper-slide" data-id="36"png>               
+                <img src="images/img_39.png" alt="Slide Image" />
+              </div>
+              <div class="swiper-slide" data-id="37"png>               
+                <img src="images/img_40.png" alt="Slide Image" />
+              </div>
           </div>
         </div>
     </div>
@@ -181,107 +190,33 @@
   <div class="square" data-id="22" id="square-22"></div>
   <div class="square" data-id="23" id="square-23"></div>
   <div class="square" data-id="24" id="square-24"></div>
-  <div class="square" data-id="25" id="square-10"></div>
-  <div class="square" data-id="26" id="square-11"></div>
-  <div class="square" data-id="27" id="square-12"></div>
-  <div class="square" data-id="28" id="square-13"></div>
-  <div class="square" data-id="29" id="square-14"></div>
-  <div class="square" data-id="30" id="square-15"></div>
-  <div class="square" data-id="31" id="square-16"></div>
-  <div class="square" data-id="32" id="square-17"></div>
-  <div class="square" data-id="33" id="square-18"></div>
-  <div class="square" data-id="34" id="square-19"></div>
-  <div class="square" data-id="35" id="square-20"></div>
-  <div class="square" data-id="36" id="square-21"></div>
-  <div class="square" data-id="37" id="square-22"></div>
-  <div class="square" data-id="38" id="square-23"></div>
-  <div class="square" data-id="39" id="square-24"></div>
+  <div class="square" data-id="25" id="square-25"></div>
+  <div class="square" data-id="26" id="square-26"></div>
+  <div class="square" data-id="27" id="square-27"></div>
+  <div class="square" data-id="28" id="square-28"></div>
+  <div class="square" data-id="29" id="square-29"></div>
+  <div class="square" data-id="30" id="square-30"></div>
+  <div class="square" data-id="31" id="square-31"></div>
+  <div class="square" data-id="32" id="square-32"></div>
+  <div class="square" data-id="33" id="square-33"></div>
+  <div class="square" data-id="34" id="square-34"></div>
+  <div class="square" data-id="35" id="square-35"></div>
+  <div class="square" data-id="36" id="square-36"></div>
+  <div class="square" data-id="37" id="square-37"></div>
+  <div class="square" data-id="38" id="square-38"></div>
+  <div class="square" data-id="39" id="square-39"></div>
+  <div class="square" data-id="40" id="square-40"></div>  
 </div>
-<p>THE OTHER PLAYERS GAME BOARD</p>
+<p> YOUR GAME BOARD</p>
 
+<!-- Load Firebase -->
+<script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
 
-
-    <script>
-      module = {};
-  </script>
-  <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-      import { getDatabase, ref, set, remove, onChildAdded, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-
-      const firebaseConfig = {
-      apiKey: "AIzaSyBFucjhQZsAngmtUxldhCMS01IdF1EBM5M",
-      authDomain: "newform-718a7.firebaseapp.com",
-      databaseURL: "https://newform-718a7-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "newform-718a7",
-      storageBucket: "newform-718a7.appspot.com",
-      messagingSenderId: "9032405366",
-      appId: "1:9032405366:web:6dce6e07ae2f4d1a03aa57"
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
-
-
+<!-- Your script -->
+        <script type="module" src="script.js"></script>
       
-      // variables
-      var msgTxt = document.getElementById('msgTxt');
-      var sender;
-      if(sessionStorage.getItem('sender')){
-          sender = sessionStorage.getItem('sender');
-      } else {
-          sender = prompt('PLEASE ENTER YOUR NAME');
-          sessionStorage.setItem('sender',sender);
-      }
-
-      console.log(sender)
-
-      // Function to clear session storage
-      function clearSessionStorage() {
-      sessionStorage.clear();
-      console.log('Session storage cleared.');
-      }
-
-      // Set an interval to clear session storage every 5 minutes (20 * 60 * 1000 milliseconds)
-      const interval = 5 * 60 * 1000;
-      setInterval(clearSessionStorage, interval);
-
-
-      
-
-
-      // TO SEND MESSAGES
-          module.sendMsg = function sendMsg(){
-          var msg = msgTxt.value;
-          var timestamp = new Date().getTime();
-          var readableTime = new Date(timestamp).toLocaleString();
-          set(ref(db,"MESSAGES/"+timestamp),{
-              msg : msg,
-              sender : sender,
-              readableTime: readableTime
-
-          })
-
-          msgTxt.value="";
-      }
-
-       // TO RECEIVE MSG
-    onChildAdded(ref(db,"MESSAGES"), (data)=>{
-        if(data.val().sender == sender){
-            messages.innerHTML += "<div style=justify-content:end class=outer id="+data.key+"><div id=inner class=me>you : "+data.val().msg+"<br> "+data.val().readableTime+"</div></div>";
-        } else {
-            messages.innerHTML += "<div class=outer id="+data.key+"><div id=inner class=notMe>"+data.val().sender+" : "+data.val().msg+"<br>"+data.val().readableTime+"</div></div>";
-        }
-    })
-  </script>
-
-
-
-
-        
-      
-    
-
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-        <script src="script.js"></script>
+       
 </body>
 </html>
