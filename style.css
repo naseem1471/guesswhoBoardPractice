@@ -203,6 +203,18 @@ img:hover::after {
   display: block;
 }
 
+.otherPlayersgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+  gap: 2px;
+  min-width: 320px;
+  min-height: 240px;
+  background-color: grey; /* Set background color of grid to grey */
+  border-radius: 12px;
+  /* Your existing styles */
+  border: 2px solid red; /* Add a red border */
+}
+
 
   
   

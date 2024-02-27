@@ -1,8 +1,10 @@
 
 
+// Import the functions you need from the Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, set, remove, onChildAdded, onChildRemoved, get,child } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import { getDatabase, ref, set, remove, onChildAdded, onChildRemoved, get,child, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
+document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
@@ -14,22 +16,27 @@ var swiper = new Swiper('.Slider-container', {
   });
 // swiper.changeDirection('vertical');
 
-
+// Your Firebase configuration
 const firebaseConfig = {
-apiKey: "AIzaSyBFucjhQZsAngmtUxldhCMS01IdF1EBM5M",
-authDomain: "newform-718a7.firebaseapp.com",
-databaseURL: "https://newform-718a7-default-rtdb.europe-west1.firebasedatabase.app",
-projectId: "newform-718a7",
-storageBucket: "newform-718a7.appspot.com",
-messagingSenderId: "9032405366",
-appId: "1:9032405366:web:6dce6e07ae2f4d1a03aa57"
+  apiKey: "AIzaSyBFucjhQZsAngmtUxldhCMS01IdF1EBM5M",
+  authDomain: "newform-718a7.firebaseapp.com",
+  databaseURL: "https://newform-718a7-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "newform-718a7",
+  storageBucket: "newform-718a7.appspot.com",
+  messagingSenderId: "9032405366",
+  appId: "1:9032405366:web:6dce6e07ae2f4d1a03aa57"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app)
+
+// Get a reference to the database service
+const db = getDatabase(app);
 
 // Declare a global variable for the chosenSlider using let
 let chosenSlider = null;
+// Global variable to hold the other player's array
+let otherPlayersArray;
 
 
 // Get the form element
@@ -68,23 +75,17 @@ reject.addEventListener("click", function () {
   });
 
 // Add an event listener for the submit event
-form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", function(event) {
     // Prevent the default form action
     event.preventDefault();
-  
     // Get the input value
     let chosen = form.elements["chosen"].value;
-  
     // Assign the input value to the global variable
     chosenSlider = chosen;
-  
      // Save chosenSlider to localStorage
      localStorage.setItem("chosenSlider", chosenSlider);
-     
-  
     // Get the result element
     let result = document.getElementById("result");
-  
     // Display the result using a template string
     result.textContent = `The player ${window.sender} has chosen image ${chosenSlider}`;
   
@@ -138,21 +139,69 @@ form.addEventListener("submit", function(event) {
   })
 
             set(ref(db,"GAMEBOARD/"+window.sender),{
-        chosenSlider : chosenSlider,
-        sender : sender,
-        array :[ "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700","#FFD700", "#FFD700", "#FFD700", "#FF700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700" ]
-      })
+              sender : sender,
+              array :[ "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700",  ]
+            })
 
-      let colorArray;
-        get(child(ref(db), "GAMEBOARD/" + window.sender + "/array")).then((snapshot) => {
+          let colorArray;
+          get(child(ref(db), "GAMEBOARD/" + window.sender + "/array")).then((snapshot) => {
+        if (snapshot.exists()) {
+          colorArray = snapshot.val();
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
+
+      async function getPlayers() {
+        let players = []; // Declare players as an empty array
+
+        // Get a list of all players from the database
+        try {
+          const snapshot = await get(child(ref(db), 'GAMEBOARD'));
           if (snapshot.exists()) {
-            colorArray = snapshot.val();
+            players = Object.keys(snapshot.val()); // Get player names
           } else {
             console.log("No data available");
           }
-        }).catch((error) => {
+        } catch (error) {
           console.error(error);
+        }
+
+        return players;
+      }
+
+            // Usage:
+      getPlayers().then((players) => {
+        // You can set up listeners for each player here
+        players.forEach((player) => {
+          onValue(ref(db, `GAMEBOARD/${player}/array`), (snapshot) => {
+            if (sender !== player) { // If the current user is not the player
+              otherPlayersArray = snapshot.val(); // Update the global variable
+              console.log('otherPlayersArray updated:', otherPlayersArray); // Log the updated otherPlayersArray
+
+              // Call the updateBoard function
+              updateBoard(otherPlayersArray);
+            }
+          });
         });
+      });
 
-
-
+      // Function to update the board
+      function updateBoard(colorCodes) {
+        console.log('updateBoard called'); // Log when updateBoard is called
+        if (colorCodes) {
+          // Loop through the colorCodes array
+          for (let i = 0; i < colorCodes.length; i++) {
+            // Get the square element corresponding to the current index
+            let square = document.querySelector(`.square[data-id='${i + 41}']`);
+            console.log('Square selected:', square); // Log the selected square
+            
+            // Update the background color of the square based on the color in the array
+            square.style.backgroundColor = colorCodes[i];
+            console.log('Background color set to:', colorCodes[i]); // Log the set background color
+          }
+        }
+      }
+    });

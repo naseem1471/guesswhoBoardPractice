@@ -5,11 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess Who?</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css",
-      href='https://fonts.googleapis.com/css?family=Montserrat:400,700' 
-    />
+        <!-- Firebase App (the core Firebase SDK) -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+
+    <!-- Add the Firebase products that you want to use -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700" />
+
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -147,13 +151,13 @@
               <div class="swiper-slide" data-id="37"png>               
                 <img src="images/img_37.png" alt="Slide Image" />
               </div>
-              <div class="swiper-slide" data-id="35">
+              <div class="swiper-slide" data-id="38">
                 <img src="images/img_38.png" alt="Slide Image" />
               </div>
-              <div class="swiper-slide" data-id="36"png>               
+              <div class="swiper-slide" data-id="39"png>               
                 <img src="images/img_39.png" alt="Slide Image" />
               </div>
-              <div class="swiper-slide" data-id="37"png>               
+              <div class="swiper-slide" data-id="40"png>               
                 <img src="images/img_40.png" alt="Slide Image" />
               </div>
           </div>
@@ -209,14 +213,55 @@
 </div>
 <p> YOUR GAME BOARD</p>
 
-<!-- Load Firebase -->
-<script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-<script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+<div class="otherPlayersgrid">
+  <div class="square" data-id="41" id="square-41"></div>
+  <div class="square" data-id="42" id="square-42"></div>
+  <div class="square" data-id="43" id="square-43"></div>
+  <div class="square" data-id="44" id="square-44"></div>
+  <div class="square" data-id="45" id="square-45"></div>
+  <div class="square" data-id="46" id="square-46"></div>
+  <div class="square" data-id="47" id="square-47"></div>
+  <div class="square" data-id="48" id="square-48"></div>
+  <div class="square" data-id="49" id="square-49"></div>
+  <div class="square" data-id="50" id="square-50"></div>
+  <div class="square" data-id="51" id="square-51"></div>
+  <div class="square" data-id="52" id="square-52"></div>
+  <div class="square" data-id="53" id="square-53"></div>
+  <div class="square" data-id="54" id="square-54"></div>
+  <div class="square" data-id="55" id="square-55"></div>
+  <div class="square" data-id="56" id="square-56"></div>
+  <div class="square" data-id="57" id="square-57"></div>
+  <div class="square" data-id="58" id="square-58"></div>
+  <div class="square" data-id="59" id="square-59"></div>
+  <div class="square" data-id="60" id="square-60"></div>
+  <div class="square" data-id="61" id="square-61"></div>
+  <div class="square" data-id="62" id="square-62"></div>
+  <div class="square" data-id="63" id="square-63"></div>
+  <div class="square" data-id="64" id="square-64"></div>
+  <div class="square" data-id="65" id="square-65"></div>
+  <div class="square" data-id="66" id="square-66"></div>
+  <div class="square" data-id="67" id="square-67"></div>
+  <div class="square" data-id="68" id="square-68"></div>
+  <div class="square" data-id="69" id="square-69"></div>
+  <div class="square" data-id="70" id="square-70"></div>
+  <div class="square" data-id="71" id="square-71"></div>
+  <div class="square" data-id="72" id="square-72"></div>
+  <div class="square" data-id="73" id="square-73"></div>
+  <div class="square" data-id="74" id="square-74"></div>
+  <div class="square" data-id="75" id="square-75"></div>
+  <div class="square" data-id="76" id="square-76"></div>
+  <div class="square" data-id="77" id="square-77"></div>
+  <div class="square" data-id="78" id="square-78"></div>
+  <div class="square" data-id="79" id="square-79"></div>
+  <div class="square" data-id="80" id="square-80"></div>  
+</div>
+<p> THE OPPONENTS GAMEBOARD</p>
 
-<!-- Your script -->
-        <script type="module" src="script.js"></script>
-      
+
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-       
+        <script type= "module" src="script.js"></script>
+
+      
+        
 </body>
 </html>
