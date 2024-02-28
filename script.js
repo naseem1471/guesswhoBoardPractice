@@ -50,11 +50,11 @@ reject.addEventListener("click", function () {
     // Get the image element of the current slide
     var img = document.querySelector(".swiper-slide:nth-child(" + (swiper.activeIndex + 1) + ") img");
     // Set the opacity of the image to 0..05
-    img.style.opacity = 0.05;
+    img.style.opacity = 0.025;
     // Move to the next slide
     var slideId = document.querySelector(".swiper-slide.swiper-slide-active").getAttribute("data-id");
-    colorArray[slideId - 1] = "grey"; // change the color in the array
-    set(ref(db,"GAMEBOARD/"+window.sender+"/array"), colorArray); // update the array in the database
+    yourArray[slideId - 1] = "grey"; // change the color in the array
+    set(ref(db,"GAMEBOARD/"+window.sender+"/array"), yourArray); // update the array in the database
     var square = document.querySelector(".square[data-id='" + slideId + "']");
     square.style.backgroundColor = "grey";
     swiper.slideNext();
@@ -64,10 +64,10 @@ reject.addEventListener("click", function () {
     var img = document.querySelector(".swiper-slide:nth-child(" + (swiper.activeIndex + 1) + ") img");
     // Set the opacity of the image to 1
     img.style.opacity = 1;
-    // Set the background color of the square to white
+    // Set the background color of the square to #FFD700
     var slideId = document.querySelector(".swiper-slide.swiper-slide-active").getAttribute("data-id");
-    colorArray[slideId - 1] = "#FFD700"; // change the color in the array
-    set(ref(db,"GAMEBOARD/"+window.sender+"/array"), colorArray); // update the array in the database
+    yourArray[slideId - 1] = "#FFD700"; // change the color in the array
+    set(ref(db,"GAMEBOARD/"+window.sender+"/array"), yourArray); // update the array in the database
     var square = document.querySelector(".square[data-id='" + slideId + "']");
     square.style.backgroundColor = "#FFD700";
     // Move to the next slide
@@ -142,10 +142,11 @@ reject.addEventListener("click", function () {
               array :[ "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700", "#FFD700",  ]
             })
 
-          let colorArray;
+          let yourArray;
           get(child(ref(db), "GAMEBOARD/" + window.sender + "/array")).then((snapshot) => {
         if (snapshot.exists()) {
-          colorArray = snapshot.val();
+          yourArray = snapshot.val();
+          
         } else {
           console.log("No data available");
         }
@@ -160,6 +161,7 @@ reject.addEventListener("click", function () {
         try {
           const snapshot = await get(child(ref(db), 'GAMEBOARD'));
           if (snapshot.exists()) {
+            console.log("players:", snapshot.val());
             players = Object.keys(snapshot.val()); // Get player names
           } else {
             console.log("No data available");
