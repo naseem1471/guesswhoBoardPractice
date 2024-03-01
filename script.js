@@ -8,13 +8,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-var swiper = new Swiper('.Slider-container', {
+var swiper = new Swiper('.Slider-container' , {
     effect: 'cards',
     grabCursor: true,
     centerdSlides: true,
     loop: true,
+    // swiper.changeDirection('vertical');
+     // Add event listener for slide change
+  on: {
+    slideChange: function () {
+      // Get the active slide element
+      var activeSlide = swiper.slides[swiper.activeIndex];
+      
+      // Get the image element of the active slide
+      var img = activeSlide.querySelector('img');
+      
+      // Get the alt text of the image
+      var altText = img.getAttribute('alt');
+      
+      // Set the alt text as the content of the paragraph element
+      document.getElementById('image-name').textContent = altText;
+    }
+  }
   });
-// swiper.changeDirection('vertical');
+      // Manually trigger the slideChange event after Swiper initialization
+    swiper.on('init', function () {
+      swiper.emit('slideChange');
+    });
+
+  
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -49,7 +71,7 @@ const accept = document.getElementById("accept");
 reject.addEventListener("click", function () {
     // Get the image element of the current slide
     var img = document.querySelector(".swiper-slide:nth-child(" + (swiper.activeIndex + 1) + ") img");
-    // Set the opacity of the image to 0..05
+    // Set the opacity of the image to 0.025
     img.style.opacity = 0.025;
     // Move to the next slide
     var slideId = document.querySelector(".swiper-slide.swiper-slide-active").getAttribute("data-id");
@@ -59,7 +81,7 @@ reject.addEventListener("click", function () {
     square.style.backgroundColor = "grey";
     swiper.slideNext();
   });
-  accept.addEventListener("click", function () {
+    accept.addEventListener("click", function () {
     // Get the image element of the current slide
     var img = document.querySelector(".swiper-slide:nth-child(" + (swiper.activeIndex + 1) + ") img");
     // Set the opacity of the image to 1

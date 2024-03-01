@@ -30,12 +30,17 @@ body {
 }
 
 .startContainer {
-  margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    height:min-content;
+    gap:10px;
+
 }
 
 .containerImage {
-    width: 100px; /* Set a fixed width for the container */
-    height: 100px; /* Set a fixed height for the container */
+    flex:1;
+    width: 190px; /* Set a fixed width for the container */
+    height: 190px; /* Set a fixed height for the container */
     border-radius: 50%; /* Make the container round */
     overflow: hidden; /* Ensure the image does not overflow the container */
   }  
@@ -43,19 +48,24 @@ body {
 .containerImage img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit:contain;
 }
 
 /* This is the input element */
-#my-form input {
-    width: 20%; 
+#my-form input {    
+    width: 30%; 
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 4px;
   }
 
-form {
-    display:block;
+#my-form {
+    display: flex;
+    flex:1;
+    width: 100%;
+    height: min-content;
+    flex-wrap: wrap; /* Allow text to wrap */
+
 }
 
 #result {
@@ -148,6 +158,8 @@ form {
     padding: 10px;
     box-sizing: border-box;
     clear: both; /* Ensure it clears floated elements */
+    flex-wrap: wrap; /* Allow text to wrap */
+
 }
 
 #sendMsg {   
@@ -212,7 +224,14 @@ img:hover::after {
   background-color: grey; /* Set background color of grid to grey */
   border-radius: 12px;
   /* Your existing styles */
-  border: 2px solid red; /* Add a red border */
+  border: 3px solid red; /* Add a red border */
+}
+
+.choose {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 10px;
+  margin-left: 5px;
 }
 
 
